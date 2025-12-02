@@ -16,10 +16,6 @@ date: '2025-10-06'
     - [Supported](#supported)
 - [SaaS](#saas)
   - [SaaS - Authentication](#saas---authentication)
-  - [SaaS - Email](#saas---email)
-  - [SaaS - Payment](#saas---payment)
-- [Serverless](#serverless)
-- [PaaS - Platform as a Service](#paas---platform-as-a-service)
 - [BaaS - Back-end as a Service](#baas---back-end-as-a-service)
 - [IaaS - Infrastructure as a Service](#iaas---infrastructure-as-a-service)
 - [API](#api)
@@ -182,52 +178,6 @@ model User {
 | Application | SaaS   | Authentication | [OneLogin][onelogin] | [GitHub][gh-onelogin] |            | [TS][ts]     |             |
 | Application | SaaS   | Authentication | [OSSO][osso]         | [GitHub][gh-osso]     |            | [TS][ts]     |             |
 | Application | SaaS   | Authentication | [Zitadel][zitadel]   | [GitHub][gh-zitadel]  |            | [Go][go]     |             |
-
-[⬆️ Back to Table of Contents](#table-of-contents)
-
-### SaaS - Email
-
-| Supersector | Sector | Subsector | Technology             | Open Source            | Maintainer | Language | Recommended |
-| ----------- | ------ | --------- | ---------------------- | ---------------------- | ---------- | -------- | ----------- |
-| Application | SaaS   | Email     | [SendGrid][sendgrid]   | [GitHub][gh-sendgrid]  |            | [JS][js] | Recommended |
-| Application | SaaS   | Email     | [Mailgun][mailgun]     | [GitHub][gh-mailgun]   |            | [Go][go] |             |
-| Application | SaaS   | Email     | [Postmark][postmark]   | [GitHub][gh-postmark]  |            | [TS][ts] |             |
-| Application | SaaS   | Email     | [MailChimp][mailchimp] | [GitHub][gh-mailchimp] |            | [JS][js] |             |
-| Application | SaaS   | Email     | [Resend][resend]       | [GitHub][gh-resend]    |            | [TS][ts] |             |
-
-### SaaS - Payment
-
-| Supersector | Sector | Subsector | Technology             | Open Source            | Maintainer | Language | Recommended |
-| ----------- | ------ | --------- | ---------------------- | ---------------------- | ---------- | -------- | ----------- |
-| Application | SaaS   | Payment   | [Braintree][braintree] | [GitHub][gh-braintree] |            | [JS][js] |             |
-| Application | SaaS   | Payment   | [Paddle][paddle]       | [GitHub][gh-paddle]    |            | [TS][ts] |             |
-| Application | SaaS   | Payment   | [Paypal][paypal]       | [GitHub][gh-paypal]    |            | [TS][ts] |             |
-| Application | SaaS   | Payment   | [Square][square]       | [GitHub][gh-square]    |            | [TS][ts] |             |
-| Application | SaaS   | Payment   | [Stripe][stripe]       | [GitHub][gh-stripe]    |            | [TS][ts] |             |
-
-[⬆️ Back to Table of Contents](#table-of-contents)
-
-## Serverless
-
-| Supersector | Sector     | Subsector | Technology                               | Open Source          | Maintainer               | Language | Recommended |
-| ----------- | ---------- | --------- | ---------------------------------------- | -------------------- | ------------------------ | -------- | ----------- |
-| Application | Serverless |           | [Cloudflare Workers][cloudflare-workers] |                      | [Cloudflare][cloudflare] |          |             |
-| Application | Serverless |           | [Deno Deploy][deno-deploy]               |                      |                          |          |             |
-| Application | Serverless |           | [Fly][fly]                               | [GitHub][gh-fly]     | [Fly][fly]               |          |             |
-| Application | Serverless |           | [Netlify][netlify]                       | [GitHub][gh-netlify] | [Netlify][netlify]       |          |             |
-| Application | Serverless |           | [Vercel][vercel]                         | [GitHub][gh-vercel]  | [Vercel][vercel]         |          | Recommended |
-
-[⬆️ Back to Table of Contents](#table-of-contents)
-
-## PaaS - Platform as a Service
-
-| Supersector | Sector | Subsector | Technology                      | Open Source             | Maintainer             | Language | Recommended |
-| ----------- | ------ | --------- | ------------------------------- | ----------------------- | ---------------------- | -------- | ----------- |
-| Application | PaaS   |           | [App Engine][google-app-engine] | [GitHub][gh-app-engine] | [Alphabet][alphabet]   | [TS][ts] |             |
-| Application | PaaS   |           | [Heroku][heroku]                | [GitHub][gh-heroku]     | [Heroku][heroku]       |          |             |
-| Application | PaaS   |           | [OpenShift][openshift]          | [GitHub][gh-openshift]  | [OpenShift][openshift] |          |             |
-| Application | PaaS   |           | [Railway][railway]              | [GitHub][gh-railway]    | [Railway][railway]     |          |             |
-| Application | PaaS   |           | [Render][render]                | [GitHub][gh-render]     | [Render][render]       |          | Recommended |
 
 [⬆️ Back to Table of Contents](#table-of-contents)
 
