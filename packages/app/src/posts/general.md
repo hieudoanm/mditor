@@ -6,7 +6,6 @@ date: '2025-05-01'
 ## Table of Content
 
 - [Table of Content](#table-of-content)
-- [Dream House](#dream-house)
 - [Bookmarks](#bookmarks)
   - [Websites](#websites)
 - [📰 National News Outlets](#-national-news-outlets)
@@ -16,12 +15,9 @@ date: '2025-05-01'
   - [Programming Tools](#programming-tools)
 - [Habits vs Routines](#habits-vs-routines)
 - [Maslow's hierarchy of needs](#maslows-hierarchy-of-needs)
-- [STEAM](#steam)
 - [Mathematics](#mathematics)
   - [PI (π)](#pi-π)
   - [Perfect Numbers](#perfect-numbers)
-
-## Dream House
 
 ## Bookmarks
 
@@ -170,32 +166,6 @@ date: '2025-05-01'
   - Acceptance
   - Experience Purpose
   - Meaning and Inner Potential
-
-## STEAM
-
-STEAM is short for Science, Technology, Engineering, Arts, and Mathematics
-
-- Science: Physics, Chemistry, Biology
-- Technology: Tools
-- Engineering: Build the Tools
-  - Robotics
-- Arts
-  - Design
-  - Literature (Novel, Poem)
-  - Music (Instrumental)
-  - Visual (Drawing / Painting, Photography)
-- Mathematics: The Language of the Universe
-  - Arithmetic: Basic number operations
-  - Algebra: Symbols and rules for manipulating them
-  - Geometry: Shapes, sizes, and spatial reasoning
-  - Trigonometry: Relationships in triangles
-  - Calculus: Change and motion (includes differential and integral calculus)
-  - Number Theory: Properties of integers
-  - Set Theory – Study of sets (collections of objects)
-  - Linear Algebra – Vector spaces and linear equations
-  - Analysis - Continuous functions, limits, and related theories, such as differentiation, integration, measure, infinite sequences, series, and analytic functions.
-
-> The engineers apply their knowledge of science and mathematics to develop a new technology to create arts.
 
 ## Mathematics
 
