@@ -31,8 +31,7 @@
 		"start": "next start",
 		"test": "jest",
 		"format": "prettier --cache --write .",
-		"lint": "eslint",
-		"prepare": "husky"
+		"lint": "eslint"
 	},
 	"dependencies": {
 		"@capacitor/android": "8.0.0",
