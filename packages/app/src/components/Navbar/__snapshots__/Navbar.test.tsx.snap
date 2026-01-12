@@ -15,7 +15,7 @@ exports[`Navbar renders correctly 1`] = `
           <a
             href="/"
           >
-            md
+            MDitor
           </a>
         </div>
         <a
