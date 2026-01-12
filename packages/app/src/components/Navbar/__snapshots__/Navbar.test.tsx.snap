@@ -15,7 +15,7 @@ exports[`Navbar renders correctly 1`] = `
           <a
             href="/"
           >
-            crystallised.md
+            md
           </a>
         </div>
         <a

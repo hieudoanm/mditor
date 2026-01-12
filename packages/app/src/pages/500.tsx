@@ -1,22 +1,23 @@
+import { ErrorTemplate } from '@mditor/templates/ErrorTemplate';
 import { NextPage } from 'next';
-import Link from 'next/link';
+
+const messages = [
+	'Something went wrong on our end.',
+	'An unexpected error occurred.',
+	'We ran into a server issue.',
+	'The server had trouble processing your request.',
+	'This wasn’t supposed to happen.',
+];
 
 const InternalServerErrorPage: NextPage = () => {
 	return (
-		<div className="h-screen w-screen">
-			<div className="flex h-full w-full items-center justify-center">
-				<div className="text-center">
-					<h1 className="text-9xl font-black">500</h1>
-					<Link href="/">
-						<button
-							type="button"
-							className="btn btn-primary w-full rounded border border-neutral-800 py-4 uppercase">
-							Back to Home
-						</button>
-					</Link>
-				</div>
-			</div>
-		</div>
+		<ErrorTemplate
+			error={{
+				code: 500,
+				message: 'Internal server error',
+			}}
+			messages={messages}
+		/>
 	);
 };
 

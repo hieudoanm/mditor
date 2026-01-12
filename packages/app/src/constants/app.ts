@@ -1,4 +1,4 @@
-export const APP_NAME: string = 'md';
+export const APP_NAME: string = 'MDitor';
 
 export const INITIAL_MARKDOWN: string = `# Markdown Cheat Sheet
 
@@ -13,8 +13,16 @@ These are the elements outlined in John Gruber’s original design document. All
 ### Heading
 
 # H1
+
 ## H2
+
 ### H3
+
+#### H4
+
+##### H5
+
+###### H6
 
 ### Bold
 
@@ -53,8 +61,6 @@ These are the elements outlined in John Gruber’s original design document. All
 [Markdown Guide](https://www.markdownguide.org)
 
 ### Image
-
-![alt text](https://www.markdownguide.org/assets/images/tux.png)
 
 ## Extended Syntax
 
@@ -118,4 +124,5 @@ H~2~O
 
 ### Superscript
 
-X^2^`;
+X^2^
+`;

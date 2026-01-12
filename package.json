@@ -1,17 +1,17 @@
 {
-  "name": "@md/app",
+  "name": "@mditor/apps",
   "version": "0.0.1",
-  "description": "md",
+  "description": "mditor",
   "keywords": [
-    "md"
+    "mditor"
   ],
-  "homepage": "https://hieudoanm.github.io/md",
+  "homepage": "https://hieudoanm.github.io/mditor",
   "bugs": {
-    "url": "https://github.com/hieudoanm/md/issues"
+    "url": "https://github.com/hieudoanm/mditor/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/hieudoanm/md.git"
+    "url": "git+ssh://git@github.com/hieudoanm/mditor.git"
   },
   "license": "GPL-3.0",
   "author": "hieudoanm <hieumdoan@gmail.com> (https://hieudoanm.github.io)",

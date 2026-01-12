@@ -1,6 +1,6 @@
-import { logger } from '@md/utils/log';
-import { getSortedPostsData } from '@md/utils/posts';
-import { isSubset } from '@md/utils/set';
+import { logger } from '@mditor/utils/log';
+import { getSortedPostsData } from '@mditor/utils/posts';
+import { isSubset } from '@mditor/utils/set';
 import matter from 'gray-matter';
 import htmlToPdfmake from 'html-to-pdfmake';
 import { GetStaticProps, NextPage } from 'next';
@@ -13,28 +13,20 @@ import { remark } from 'remark';
 import gfm from 'remark-gfm';
 import html from 'remark-html';
 
-const FONT_FOLDER: string = 'https://hieudoanm.github.io/fonts';
-const FONT_NAME_ROBOTO: string = 'Roboto';
 const FONT_NAME_TIMES: string = 'Times-New-Roman';
 
 pdfMake.fonts = {
-	Roboto: {
-		normal: `${FONT_FOLDER}/${FONT_NAME_ROBOTO}/${FONT_NAME_ROBOTO}-Regular.ttf`,
-		bold: `${FONT_FOLDER}/${FONT_NAME_ROBOTO}/${FONT_NAME_ROBOTO}-Medium.ttf`,
-		italics: `${FONT_FOLDER}/${FONT_NAME_ROBOTO}/${FONT_NAME_ROBOTO}-Italic.ttf`,
-		bolditalics: `${FONT_FOLDER}/${FONT_NAME_ROBOTO}/${FONT_NAME_ROBOTO}-MediumItalic.ttf`,
-	},
 	Times: {
-		normal: `${FONT_FOLDER}/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Regular.ttf`,
-		bold: `${FONT_FOLDER}/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Bold.ttf`,
-		italics: `${FONT_FOLDER}/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Italic.ttf`,
-		bolditalics: `${FONT_FOLDER}/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Bold-Italic.ttf`,
+		normal: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Regular.ttf`,
+		bold: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Bold.ttf`,
+		italics: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Italic.ttf`,
+		bolditalics: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Bold-Italic.ttf`,
 	},
 };
 
 const postsDirectory = path.join(process.cwd(), 'src/posts');
 
-// Helper to recursively get all .md file paths
+// Helper to recursively get all .mditor file paths
 function getMarkdownFiles(dir: string): string[] {
 	const entries = fs.readdirSync(dir, { withFileTypes: true });
 	return entries.flatMap((entry) => {

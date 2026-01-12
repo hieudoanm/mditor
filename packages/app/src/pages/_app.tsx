@@ -1,5 +1,5 @@
-import { APP_NAME } from '@md/constants/app';
-import '@md/styles/globals.css';
+import { APP_NAME } from '@mditor/constants/app';
+import '@mditor/styles/globals.css';
 import 'github-markdown-css/github-markdown.css';
 import type { AppProps } from 'next/app';
 import { Geist, Geist_Mono } from 'next/font/google';
