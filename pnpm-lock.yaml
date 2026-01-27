@@ -94,8 +94,8 @@ importers:
         specifier: 25.0.10
         version: 25.0.10
       '@types/pdfmake':
-        specifier: 0.2.12
-        version: 0.2.12
+        specifier: 0.2.13
+        version: 0.2.13
       '@types/react':
         specifier: 19.2.9
         version: 19.2.9
@@ -1133,8 +1133,8 @@ packages:
   '@types/pdfkit@0.17.4':
     resolution: {integrity: sha512-odAmVuuguRxKh1X4pbMrJMp8ecwNqHRw6lweupvzK+wuyNmi6wzlUlGVZ9EqMvp3Bs2+L9Ty0sRlrvKL+gsQZg==}
 
-  '@types/pdfmake@0.2.12':
-    resolution: {integrity: sha512-YV3oY+J1eSHVH22fPuevE2kQdWvrpkEgYyHacExxgr//ZPjCitAggnysGjx/2VgiH0lEAGQ+5R+wZUGbAXn1Qg==}
+  '@types/pdfmake@0.2.13':
+    resolution: {integrity: sha512-QzOwk3dMTZOwVbDZNHGIQcpwBgprp1y1vzRBmR+p+vMtCZo00G1CN+YhNebkygtmaGjdzvyXJVOHMEuTbvhJ8A==}
 
   '@types/react-dom@19.2.3':
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
@@ -5125,7 +5125,7 @@ snapshots:
   '@types/html-to-pdfmake@2.4.4':
     dependencies:
       '@types/jsdom': 27.0.0
-      '@types/pdfmake': 0.2.12
+      '@types/pdfmake': 0.2.13
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
@@ -5172,7 +5172,7 @@ snapshots:
     dependencies:
       '@types/node': 25.0.10
 
-  '@types/pdfmake@0.2.12':
+  '@types/pdfmake@0.2.13':
     dependencies:
       '@types/node': 25.0.10
       '@types/pdfkit': 0.17.4
