@@ -34,9 +34,9 @@
 		"lint": "eslint"
 	},
 	"dependencies": {
-		"@capacitor/android": "8.0.1",
-		"@capacitor/core": "8.0.1",
-		"@capacitor/ios": "8.0.1",
+		"@capacitor/android": "8.0.2",
+		"@capacitor/core": "8.0.2",
+		"@capacitor/ios": "8.0.2",
 		"dompurify": "3.3.1",
 		"github-markdown-css": "5.8.1",
 		"gray-matter": "4.0.3",
@@ -52,7 +52,7 @@
 		"remark-html": "16.0.1"
 	},
 	"devDependencies": {
-		"@capacitor/cli": "8.0.1",
+		"@capacitor/cli": "8.0.2",
 		"@eslint/eslintrc": "3.3.3",
 		"@tailwindcss/postcss": "4.1.18",
 		"@tauri-apps/cli": "2.9.6",
