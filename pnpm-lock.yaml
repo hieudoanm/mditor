@@ -94,8 +94,8 @@ importers:
         specifier: 25.0.10
         version: 25.0.10
       '@types/pdfmake':
-        specifier: 0.2.13
-        version: 0.2.13
+        specifier: 0.3.0
+        version: 0.3.0
       '@types/react':
         specifier: 19.2.10
         version: 19.2.10
@@ -1137,8 +1137,8 @@ packages:
   '@types/pdfkit@0.17.4':
     resolution: {integrity: sha512-odAmVuuguRxKh1X4pbMrJMp8ecwNqHRw6lweupvzK+wuyNmi6wzlUlGVZ9EqMvp3Bs2+L9Ty0sRlrvKL+gsQZg==}
 
-  '@types/pdfmake@0.2.13':
-    resolution: {integrity: sha512-QzOwk3dMTZOwVbDZNHGIQcpwBgprp1y1vzRBmR+p+vMtCZo00G1CN+YhNebkygtmaGjdzvyXJVOHMEuTbvhJ8A==}
+  '@types/pdfmake@0.3.0':
+    resolution: {integrity: sha512-WjkNTseNkoT7Rpg3bfjV1tM5k4BzgmNX7WJwodw1T02KyKSyf4/vCy/2nThnUcsKglYu8blFXmVTXtht39E5YA==}
 
   '@types/react-dom@19.2.3':
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
@@ -3689,6 +3689,7 @@ packages:
   tar@7.5.6:
     resolution: {integrity: sha512-xqUeu2JAIJpXyvskvU3uvQW8PAmHrtXp2KDuMJwQqW8Sqq0CaZBAQ+dKS3RBXVhU4wC5NjAdKrmh84241gO9cA==}
     engines: {node: '>=18'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   test-exclude@6.0.0:
     resolution: {integrity: sha512-cAGWPIyOHU6zlmg88jwm7VRyXnMN7iV68OGAbYDk/Mh/xC/pzVPlQtY6ngoIH/5/tciuhGfvESU8GrHrcxD56w==}
@@ -5116,7 +5117,7 @@ snapshots:
   '@types/html-to-pdfmake@2.4.4':
     dependencies:
       '@types/jsdom': 27.0.0
-      '@types/pdfmake': 0.2.13
+      '@types/pdfmake': 0.3.0
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
@@ -5163,7 +5164,7 @@ snapshots:
     dependencies:
       '@types/node': 25.0.10
 
-  '@types/pdfmake@0.2.13':
+  '@types/pdfmake@0.3.0':
     dependencies:
       '@types/node': 25.0.10
       '@types/pdfkit': 0.17.4
