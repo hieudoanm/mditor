@@ -85,8 +85,8 @@ importers:
         specifier: 16.3.2
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@types/html-to-pdfmake':
-        specifier: 2.4.4
-        version: 2.4.4
+        specifier: 2.4.5
+        version: 2.4.5
       '@types/jest':
         specifier: 30.0.0
         version: 30.0.0
@@ -1098,8 +1098,8 @@ packages:
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
 
-  '@types/html-to-pdfmake@2.4.4':
-    resolution: {integrity: sha512-2dt44vpbftXWuObFP3UmQwsl6BGCuByxa6IXaIVLn1TqvWDJ6ithkKbiTuWjxmlpCG9vrLJNZYnckbuKQPf19w==}
+  '@types/html-to-pdfmake@2.4.5':
+    resolution: {integrity: sha512-7cGKU4b3UwQBxwjeouQ6k4JMT5CEqzMlYwk3Q2jPNtlERbYnm4NSeQ4FlV57Qde62WSLxsIXtY1idi8QiLWtdA==}
 
   '@types/istanbul-lib-coverage@2.0.6':
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
@@ -3689,6 +3689,7 @@ packages:
   tar@7.5.6:
     resolution: {integrity: sha512-xqUeu2JAIJpXyvskvU3uvQW8PAmHrtXp2KDuMJwQqW8Sqq0CaZBAQ+dKS3RBXVhU4wC5NjAdKrmh84241gO9cA==}
     engines: {node: '>=18'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   test-exclude@6.0.0:
     resolution: {integrity: sha512-cAGWPIyOHU6zlmg88jwm7VRyXnMN7iV68OGAbYDk/Mh/xC/pzVPlQtY6ngoIH/5/tciuhGfvESU8GrHrcxD56w==}
@@ -5113,7 +5114,7 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/html-to-pdfmake@2.4.4':
+  '@types/html-to-pdfmake@2.4.5':
     dependencies:
       '@types/jsdom': 27.0.0
       '@types/pdfmake': 0.2.13
