@@ -58,7 +58,7 @@
 		"@tauri-apps/cli": "2.9.6",
 		"@testing-library/jest-dom": "6.9.1",
 		"@testing-library/react": "16.3.2",
-		"@types/html-to-pdfmake": "2.4.4",
+		"@types/html-to-pdfmake": "2.4.5",
 		"@types/jest": "30.0.0",
 		"@types/node": "25.0.10",
 		"@types/pdfmake": "0.2.13",
