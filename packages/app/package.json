@@ -38,7 +38,7 @@
 		"@capacitor/core": "8.0.2",
 		"@capacitor/ios": "8.0.2",
 		"dompurify": "3.3.1",
-		"github-markdown-css": "5.8.1",
+		"github-markdown-css": "5.9.0",
 		"gray-matter": "4.0.3",
 		"html-to-pdfmake": "2.5.32",
 		"marked": "17.0.1",
