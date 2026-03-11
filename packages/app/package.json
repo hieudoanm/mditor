@@ -40,7 +40,7 @@
 		"@capacitor/android": "8.2.0",
 		"@capacitor/core": "8.2.0",
 		"@capacitor/ios": "8.2.0",
-		"dompurify": "3.3.2",
+		"dompurify": "3.3.3",
 		"github-markdown-css": "5.9.0",
 		"gray-matter": "4.0.3",
 		"html-to-pdfmake": "2.5.33",
