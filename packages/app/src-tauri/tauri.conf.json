@@ -2,7 +2,7 @@
 	"$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
 	"productName": "Keep",
 	"version": "0.0.1",
-	"identifier": "io.github.hieudoam.keep",
+	"identifier": "io.github.hieudoanm.keep",
 	"build": {
 		"frontendDist": "../docs",
 		"devUrl": "http://localhost:3000",
