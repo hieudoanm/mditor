@@ -1,10 +1,10 @@
 [package]
-name = "md"
+name = "keep"
 version = "0.0.1"
-description = "A Markdown Editor built with Tauri"
+description = "Keep"
 authors = ["hieudoanm <hieumdoan@gmail.com> (https://hieudoanm.github.io)"]
 license = "GPL-3.0"
-repository = "git@github.com/hieudoanm/md.git"
+repository = "git@github.com:hieudoanm/keep.git"
 edition = "2024"
 rust-version = "1.85.0"
 
