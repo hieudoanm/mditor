@@ -2,18 +2,18 @@ import DOMPurify from 'dompurify';
 import { FC, useEffect, useState } from 'react';
 
 export const MarkdownPreviewer: FC<{ html: string }> = ({ html = '' }) => {
-	const [innerHTML, setInnerHTML] = useState<string>('');
+  const [innerHTML, setInnerHTML] = useState<string>('');
 
-	useEffect(() => {
-		const __html: string = DOMPurify.sanitize(html);
-		setInnerHTML(__html);
-	}, [html]);
+  useEffect(() => {
+    const __html: string = DOMPurify.sanitize(html);
+    setInnerHTML(__html);
+  }, [html]);
 
-	return (
-		<div
-			// Render the HTML safely
-			dangerouslySetInnerHTML={{ __html: innerHTML }}
-			className="markdown-body !bg-base-100 !text-base-content h-full w-full"
-		/>
-	);
+  return (
+    <div
+      // Render the HTML safely
+      dangerouslySetInnerHTML={{ __html: innerHTML }}
+      className="markdown-body !bg-base-100 !text-base-content h-full w-full"
+    />
+  );
 };

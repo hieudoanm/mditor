@@ -16,120 +16,120 @@ import html from 'remark-html';
 const FONT_NAME_TIMES: string = 'Times-New-Roman';
 
 pdfMake.fonts = {
-	Times: {
-		normal: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Regular.ttf`,
-		bold: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Bold.ttf`,
-		italics: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Italic.ttf`,
-		bolditalics: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Bold-Italic.ttf`,
-	},
+  Times: {
+    normal: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Regular.ttf`,
+    bold: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Bold.ttf`,
+    italics: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Italic.ttf`,
+    bolditalics: `/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Bold-Italic.ttf`,
+  },
 };
 
 const postsDirectory = path.join(process.cwd(), 'src/posts');
 
 // Helper to recursively get all .keep file paths
 function getMarkdownFiles(dir: string): string[] {
-	const entries = fs.readdirSync(dir, { withFileTypes: true });
-	return entries.flatMap((entry) => {
-		const fullPath: string = path.join(dir, entry.name);
-		const filePath: string[] = fullPath.endsWith('.md') ? [fullPath] : [];
-		return entry.isDirectory() ? getMarkdownFiles(fullPath) : filePath;
-	});
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  return entries.flatMap((entry) => {
+    const fullPath: string = path.join(dir, entry.name);
+    const filePath: string[] = fullPath.endsWith('.md') ? [fullPath] : [];
+    return entry.isDirectory() ? getMarkdownFiles(fullPath) : filePath;
+  });
 }
 
 export async function getStaticPaths() {
-	const filePaths = getMarkdownFiles(postsDirectory);
+  const filePaths = getMarkdownFiles(postsDirectory);
 
-	const paths = filePaths.map((filePath) => {
-		const relativePath: string = path.relative(postsDirectory, filePath);
-		const idArray: string[] = relativePath.replace(/\.md$/, '').split(path.sep); // MUST be an array
-		return { params: { id: idArray } };
-	});
+  const paths = filePaths.map((filePath) => {
+    const relativePath: string = path.relative(postsDirectory, filePath);
+    const idArray: string[] = relativePath.replace(/\.md$/, '').split(path.sep); // MUST be an array
+    return { params: { id: idArray } };
+  });
 
-	return { paths, fallback: false };
+  return { paths, fallback: false };
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	logger.info(params?.id, 'params.id');
-	const id: string = Array.isArray(params?.id)
-		? params.id.join('/')
-		: (params?.id ?? '');
-	const fullPath = path.join(postsDirectory, `${id}.md`);
-	const fileContents = readFileSync(fullPath, 'utf8');
+  logger.info(params?.id, 'params.id');
+  const id: string = Array.isArray(params?.id)
+    ? params.id.join('/')
+    : (params?.id ?? '');
+  const fullPath = path.join(postsDirectory, `${id}.md`);
+  const fileContents = readFileSync(fullPath, 'utf8');
 
-	const { data, content } = matter(fileContents);
-	const processedContent = await remark().use(gfm).use(html).process(content);
-	const contentHtml = processedContent.toString();
+  const { data, content } = matter(fileContents);
+  const processedContent = await remark().use(gfm).use(html).process(content);
+  const contentHtml = processedContent.toString();
 
-	const tags: string[] = id.split('/');
-	const posts = getSortedPostsData();
-	const relatedPosts = posts.filter(({ id = '' }) => {
-		const postTags: string[] = id.split('/').filter((tag) => tag !== '');
-		postTags.pop();
-		return isSubset(new Set(tags), new Set(postTags));
-	});
+  const tags: string[] = id.split('/');
+  const posts = getSortedPostsData();
+  const relatedPosts = posts.filter(({ id = '' }) => {
+    const postTags: string[] = id.split('/').filter((tag) => tag !== '');
+    postTags.pop();
+    return isSubset(new Set(tags), new Set(postTags));
+  });
 
-	return {
-		props: {
-			postData: {
-				id,
-				...data,
-				contentHtml,
-			},
-			relatedPosts,
-		},
-	};
+  return {
+    props: {
+      postData: {
+        id,
+        ...data,
+        contentHtml,
+      },
+      relatedPosts,
+    },
+  };
 };
 
 const PostPage: NextPage<{
-	postData: { title: string; date: string; contentHtml: string };
-	relatedPosts: { id: string; title: string; date: string }[];
+  postData: { title: string; date: string; contentHtml: string };
+  relatedPosts: { id: string; title: string; date: string }[];
 }> = ({
-	postData = { title: '', date: '', contentHtml: '' },
-	relatedPosts = [],
+  postData = { title: '', date: '', contentHtml: '' },
+  relatedPosts = [],
 }) => {
-	const [{ loading }, setState] = useState<{ loading: boolean }>({
-		loading: false,
-	});
+  const [{ loading }, setState] = useState<{ loading: boolean }>({
+    loading: false,
+  });
 
-	return (
-		<div className="container mx-auto min-h-screen p-8">
-			<article className="markdown-body border-b border-neutral-800 bg-black!">
-				<button
-					className="btn btn-primary w-full"
-					disabled={loading}
-					onClick={() => {
-						setState((previous) => ({ ...previous, loading: true }));
-						const converted = htmlToPdfmake(postData.contentHtml);
-						const docDefinition = {
-							content: converted,
-							defaultStyle: { font: 'Times' },
-						};
-						pdfMake.createPdf(docDefinition).download(`${postData.title}.pdf`);
-						setState((previous) => ({ ...previous, loading: false }));
-					}}>
-					{loading ? 'Downloading ...' : 'Download PDF'}
-				</button>
-				<h1 className="text-xl font-black">{postData.title}</h1>
-				<span className="badge">{postData.date}</span>
-				<div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-			</article>
-			<div className="flex flex-col gap-y-4 md:gap-y-8">
-				{relatedPosts.map(({ id = '', title = '', date = '' }) => {
-					return (
-						<Link key={id} href={`/posts/${id}`}>
-							<div className="card flex flex-col gap-y-1 border-b border-neutral-800 py-4">
-								<p className="m-0 p-0">
-									<b>{title}</b>
-								</p>
+  return (
+    <div className="container mx-auto min-h-screen p-8">
+      <article className="markdown-body border-b border-neutral-800 bg-black!">
+        <button
+          className="btn btn-primary w-full"
+          disabled={loading}
+          onClick={() => {
+            setState((previous) => ({ ...previous, loading: true }));
+            const converted = htmlToPdfmake(postData.contentHtml);
+            const docDefinition = {
+              content: converted,
+              defaultStyle: { font: 'Times' },
+            };
+            pdfMake.createPdf(docDefinition).download(`${postData.title}.pdf`);
+            setState((previous) => ({ ...previous, loading: false }));
+          }}>
+          {loading ? 'Downloading ...' : 'Download PDF'}
+        </button>
+        <h1 className="text-xl font-black">{postData.title}</h1>
+        <span className="badge">{postData.date}</span>
+        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      </article>
+      <div className="flex flex-col gap-y-4 md:gap-y-8">
+        {relatedPosts.map(({ id = '', title = '', date = '' }) => {
+          return (
+            <Link key={id} href={`/posts/${id}`}>
+              <div className="card flex flex-col gap-y-1 border-b border-neutral-800 py-4">
+                <p className="m-0 p-0">
+                  <b>{title}</b>
+                </p>
 
-								<small>Date: {date}</small>
-							</div>
-						</Link>
-					);
-				})}
-			</div>
-		</div>
-	);
+                <small>Date: {date}</small>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default PostPage;
