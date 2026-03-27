@@ -35,7 +35,8 @@
     "build:ios": "rm -rf mobile/ios && cap add ios && cap sync ios",
     "build:mobile": "pnpm run build:android && pnpm run build:ios",
     "prestart": "kill-port 3000",
-    "start": "next start"
+    "start": "next start",
+    "tauri": "tauri"
   },
   "dependencies": {
     "@capacitor/android": "8.3.0",
@@ -53,7 +54,8 @@
     "react-dom": "19.2.4",
     "remark": "15.0.1",
     "remark-gfm": "4.0.1",
-    "remark-html": "16.0.1"
+    "remark-html": "16.0.1",
+    "@tauri-apps/api": "2.10.1"
   },
   "devDependencies": {
     "@capacitor/cli": "8.3.0",
