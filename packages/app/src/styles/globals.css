@@ -6,3 +6,8 @@
 .markdown-body ul {
   list-style: circle;
 }
+
+.cm-editor {
+  background: transparent;
+  padding: 1rem;
+}

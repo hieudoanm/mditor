@@ -1,3 +1,7 @@
+import { markdown as markdownLang } from '@codemirror/lang-markdown';
+import { EditorState } from '@codemirror/state';
+import { EditorView } from '@codemirror/view';
+import { oneDark } from '@codemirror/theme-one-dark';
 import { MarkdownPreviewer } from '@keep/components/MarkdownPreviewer';
 import { Navbar } from '@keep/components/Navbar/Navbar';
 import { INITIAL_MARKDOWN } from '@keep/constants/app';
@@ -13,48 +17,96 @@ import {
   PageSize,
   TDocumentDefinitions,
 } from 'pdfmake/interfaces';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-const FONT_NAME_TIMES: string = 'Times-New-Roman';
+/* =========================
+   Constants
+========================= */
+const FONT_NAME_TIMES = 'Times-New-Roman';
 
-const A4_MARGIN: [number, number, number, number] = [72, 72, 72, 72] as [
-  number,
-  number,
-  number,
-  number,
-];
-const ZERO_MARGIN: [number, number, number, number] = [0, 0, 0, 0] as [
-  number,
-  number,
-  number,
-  number,
-];
+const A4_MARGIN: [number, number, number, number] = [72, 72, 72, 72];
+const ZERO_MARGIN: [number, number, number, number] = [0, 0, 0, 0];
 
+/* =========================
+   Page
+========================= */
 const AppPage: NextPage = () => {
   const [
     { html = '', loading = false, markdown = INITIAL_MARKDOWN },
     setState,
-  ] = useState<{
-    html: string;
-    loading: boolean;
-    markdown: string;
-  }>({
+  ] = useState<{ html: string; loading: boolean; markdown: string }>({
     html: '',
     loading: false,
     markdown: INITIAL_MARKDOWN,
   });
 
+  /* =========================
+     CodeMirror
+  ========================= */
+  const editorRef = useRef<HTMLDivElement | null>(null);
+  const viewRef = useRef<EditorView | null>(null);
+
+  // Init editor
+  useEffect(() => {
+    if (!editorRef.current) return;
+
+    const state = EditorState.create({
+      doc: markdown,
+      extensions: [
+        oneDark,
+        markdownLang(),
+
+        EditorView.lineWrapping,
+
+        EditorView.updateListener.of((update) => {
+          if (update.docChanged) {
+            const value = update.state.doc.toString();
+            setState((prev) => ({ ...prev, markdown: value }));
+          }
+        }),
+      ],
+    });
+
+    viewRef.current = new EditorView({
+      state,
+      parent: editorRef.current,
+    });
+
+    return () => viewRef.current?.destroy();
+  }, []);
+
+  // Sync external markdown changes
+  useEffect(() => {
+    const view = viewRef.current;
+    if (!view) return;
+
+    const current = view.state.doc.toString();
+    if (current !== markdown) {
+      view.dispatch({
+        changes: { from: 0, to: current.length, insert: markdown },
+      });
+    }
+  }, [markdown]);
+
+  /* =========================
+     Markdown → HTML
+  ========================= */
   useEffect(() => {
     const setHTML = async () => {
-      const newHTML: string = await marked(markdown);
-      setState((previous) => ({ ...previous, html: newHTML }));
+      const newHTML = await marked(markdown);
+      setState((prev) => ({ ...prev, html: newHTML }));
     };
     setHTML();
   }, [markdown]);
 
+  /* =========================
+     PDF Export
+  ========================= */
   const handleDownload = () => {
-    setState((previous) => ({ ...previous, loading: true }));
+    setState((prev) => ({ ...prev, loading: true }));
+
     const origin = window.location.origin;
+
     pdfMake.fonts = {
       Times: {
         normal: `${origin}/fonts/${FONT_NAME_TIMES}/${FONT_NAME_TIMES}-Regular.ttf`,
@@ -65,6 +117,7 @@ const AppPage: NextPage = () => {
     };
 
     const converted: Content[] = htmlToPdfmake(html) as Content[];
+
     const filteredContent = converted.filter(
       (content) => (content as ContentText).text !== ' '
     );
@@ -100,7 +153,7 @@ const AppPage: NextPage = () => {
           fontSize: 12,
           bold: true,
           alignment: 'left' as Alignment,
-          margin: [36, 0, 0, 0] as [number, number, number, number],
+          margin: [36, 0, 0, 0],
           lineHeight: 2.0,
         },
         'html-h5': {
@@ -108,12 +161,12 @@ const AppPage: NextPage = () => {
           bold: true,
           italics: true,
           alignment: 'left' as Alignment,
-          margin: [36, 0, 0, 0] as [number, number, number, number],
+          margin: [36, 0, 0, 0],
           lineHeight: 2.0,
         },
         'html-h6': {
           fontSize: 12,
-          margin: [36, 0, 0, 0] as [number, number, number, number],
+          margin: [36, 0, 0, 0],
           lineHeight: 2.0,
         },
         'html-p': {
@@ -129,56 +182,54 @@ const AppPage: NextPage = () => {
         margin: ZERO_MARGIN,
       },
     };
-    pdfMake.createPdf(documentDefinitions).download(`download.pdf`);
-    setState((previous) => ({ ...previous, loading: false }));
+
+    pdfMake.createPdf(documentDefinitions).download('download.pdf');
+
+    setState((prev) => ({ ...prev, loading: false }));
   };
 
+  /* =========================
+     UI
+  ========================= */
   return (
     <div className="divide-base-300 flex h-screen w-screen flex-col divide-y overflow-hidden">
       <Navbar />
+
       <div className="divide-base-300 grid grow divide-x overflow-hidden md:grid-cols-2">
-        <div className="flex h-full flex-col gap-y-4 overflow-hidden p-4 md:col-span-1 md:gap-y-8 md:p-8">
-          <div className="flex">
+        {/* LEFT: Editor */}
+        <div className="flex h-full flex-col overflow-hidden">
+          <div className="border-base-300 border-b p-4">
             <select className="select select-sm">
-              <option className="h1">Heading 1</option>
-              <option className="h2">Heading 2</option>
-              <option className="h3">Heading 3</option>
-              <option className="h4">Heading 4</option>
-              <option className="h5">Heading 5</option>
-              <option className="h6">Heading 6</option>
-              <option className="p">Paragraph</option>
+              <option>Heading 1</option>
+              <option>Heading 2</option>
+              <option>Heading 3</option>
+              <option>Heading 4</option>
+              <option>Heading 5</option>
+              <option>Heading 6</option>
+              <option>Paragraph</option>
             </select>
           </div>
-          <textarea
-            id="markdown"
-            name="markdown"
-            placeholder="Markdown"
-            className="scrollbar-none h-full w-full resize-none focus:outline-none"
-            value={markdown}
-            onChange={(event) => {
-              setState((previous) => ({
-                ...previous,
-                markdown: event.target.value,
-              }));
-            }}
+
+          <div
+            ref={editorRef}
+            className="h-full w-full overflow-auto text-sm"
           />
         </div>
-        <div className="h-full overflow-hidden md:col-span-1">
-          <div className="flex h-full w-full flex-col gap-y-4 p-4 md:gap-y-8 md:p-8">
-            <div className="flex">
-              <button
-                type="button"
-                className="btn btn-primary btn-sm"
-                disabled={loading}
-                onClick={() => {
-                  handleDownload();
-                }}>
-                Download
-              </button>
-            </div>
-            <div className="scrollbar-none h-full w-full overflow-auto">
-              <MarkdownPreviewer html={html} />
-            </div>
+
+        {/* RIGHT: Preview */}
+        <div className="flex h-full flex-col overflow-hidden">
+          <div className="border-base-300 border-b p-4">
+            <button
+              type="button"
+              className="btn btn-primary btn-sm"
+              disabled={loading}
+              onClick={handleDownload}>
+              Download
+            </button>
+          </div>
+
+          <div className="h-full w-full overflow-auto p-4">
+            <MarkdownPreviewer html={html} />
           </div>
         </div>
       </div>
