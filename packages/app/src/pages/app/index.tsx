@@ -1,10 +1,11 @@
 import { markdown as markdownLang } from '@codemirror/lang-markdown';
-import { EditorState } from '@codemirror/state';
-import { EditorView } from '@codemirror/view';
+import { Compartment, EditorState } from '@codemirror/state';
 import { oneDark } from '@codemirror/theme-one-dark';
+import { EditorView } from '@codemirror/view';
 import { MarkdownPreviewer } from '@keep/components/MarkdownPreviewer';
 import { Navbar } from '@keep/components/Navbar/Navbar';
 import { INITIAL_MARKDOWN } from '@keep/constants/app';
+import { tryCatch } from '@keep/utils/try-catch';
 import 'github-markdown-css/github-markdown.css';
 import htmlToPdfmake from 'html-to-pdfmake';
 import { marked } from 'marked';
@@ -18,6 +19,7 @@ import {
   TDocumentDefinitions,
 } from 'pdfmake/interfaces';
 import { useEffect, useRef, useState } from 'react';
+import Tesseract from 'tesseract.js';
 
 /* =========================
    Constants
@@ -32,12 +34,23 @@ const ZERO_MARGIN: [number, number, number, number] = [0, 0, 0, 0];
 ========================= */
 const AppPage: NextPage = () => {
   const [
-    { html = '', loading = false, markdown = INITIAL_MARKDOWN },
+    {
+      html = '',
+      loading = false,
+      markdown = INITIAL_MARKDOWN,
+      ocrLoading = false,
+    },
     setState,
-  ] = useState<{ html: string; loading: boolean; markdown: string }>({
+  ] = useState<{
+    html: string;
+    loading: boolean;
+    markdown: string;
+    ocrLoading: boolean;
+  }>({
     html: '',
     loading: false,
     markdown: INITIAL_MARKDOWN,
+    ocrLoading: false,
   });
 
   /* =========================
@@ -46,7 +59,9 @@ const AppPage: NextPage = () => {
   const editorRef = useRef<HTMLDivElement | null>(null);
   const viewRef = useRef<EditorView | null>(null);
 
-  // Init editor
+  // ✅ Compartment for dynamic editable toggle
+  const editableCompartment = useRef(new Compartment()).current;
+
   useEffect(() => {
     if (!editorRef.current) return;
 
@@ -55,8 +70,10 @@ const AppPage: NextPage = () => {
       extensions: [
         oneDark,
         markdownLang(),
-
         EditorView.lineWrapping,
+
+        // ✅ Use compartment
+        editableCompartment.of(EditorView.editable.of(!ocrLoading)),
 
         EditorView.updateListener.of((update) => {
           if (update.docChanged) {
@@ -75,7 +92,18 @@ const AppPage: NextPage = () => {
     return () => viewRef.current?.destroy();
   }, []);
 
-  // Sync external markdown changes
+  // ✅ Proper dynamic toggle
+  useEffect(() => {
+    const view = viewRef.current;
+    if (!view) return;
+
+    view.dispatch({
+      effects: editableCompartment.reconfigure(
+        EditorView.editable.of(!ocrLoading)
+      ),
+    });
+  }, [ocrLoading]);
+
   useEffect(() => {
     const view = viewRef.current;
     if (!view) return;
@@ -98,6 +126,44 @@ const AppPage: NextPage = () => {
     };
     setHTML();
   }, [markdown]);
+
+  /* =========================
+     OCR
+  ========================= */
+  const handleOCRFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState((prev) => ({ ...prev, ocrLoading: true }));
+
+    const file = e.target.files?.item(0);
+    if (!file) {
+      setState((prev) => ({ ...prev, ocrLoading: false }));
+      return;
+    }
+
+    const { data = { data: { text: '' } }, error } = await tryCatch(
+      Tesseract.recognize(file, 'eng', {
+        logger: (m) => console.log(m),
+      })
+    );
+
+    if (error) {
+      setState((prev) => ({ ...prev, ocrLoading: false }));
+      return;
+    }
+
+    const text = data?.data?.text?.trim();
+
+    if (!text) {
+      setState((prev) => ({ ...prev, ocrLoading: false }));
+      return;
+    }
+
+    // ✅ Replace entire content
+    setState((prev) => ({
+      ...prev,
+      markdown: text,
+      ocrLoading: false,
+    }));
+  };
 
   /* =========================
      PDF Export
@@ -130,55 +196,47 @@ const AppPage: NextPage = () => {
         'html-h1': {
           fontSize: 12,
           bold: true,
-          alignment: 'center' as Alignment,
+          alignment: 'center',
           margin: ZERO_MARGIN,
-          lineHeight: 2.0,
+          lineHeight: 2,
         },
         'html-h2': {
           fontSize: 12,
           bold: true,
-          alignment: 'left' as Alignment,
+          alignment: 'left',
           margin: ZERO_MARGIN,
-          lineHeight: 2.0,
+          lineHeight: 2,
         },
         'html-h3': {
           fontSize: 12,
           bold: true,
           italics: true,
-          alignment: 'left' as Alignment,
+          alignment: 'left',
           margin: ZERO_MARGIN,
-          lineHeight: 2.0,
+          lineHeight: 2,
         },
         'html-h4': {
           fontSize: 12,
           bold: true,
-          alignment: 'left' as Alignment,
+          alignment: 'left',
           margin: [36, 0, 0, 0],
-          lineHeight: 2.0,
+          lineHeight: 2,
         },
         'html-h5': {
           fontSize: 12,
           bold: true,
           italics: true,
-          alignment: 'left' as Alignment,
+          alignment: 'left',
           margin: [36, 0, 0, 0],
-          lineHeight: 2.0,
+          lineHeight: 2,
         },
-        'html-h6': {
-          fontSize: 12,
-          margin: [36, 0, 0, 0],
-          lineHeight: 2.0,
-        },
-        'html-p': {
-          fontSize: 12,
-          margin: ZERO_MARGIN,
-          lineHeight: 2.0,
-        },
+        'html-h6': { fontSize: 12, margin: [36, 0, 0, 0], lineHeight: 2 },
+        'html-p': { fontSize: 12, margin: ZERO_MARGIN, lineHeight: 2 },
       },
       defaultStyle: {
         font: 'Times',
         fontSize: 12,
-        alignment: 'left' as Alignment,
+        alignment: 'left',
         margin: ZERO_MARGIN,
       },
     };
@@ -198,21 +256,27 @@ const AppPage: NextPage = () => {
       <div className="divide-base-300 grid grow divide-x overflow-hidden md:grid-cols-2">
         {/* LEFT: Editor */}
         <div className="flex h-full flex-col overflow-hidden">
-          <div className="border-base-300 border-b p-4">
-            <select className="select select-sm">
-              <option>Heading 1</option>
-              <option>Heading 2</option>
-              <option>Heading 3</option>
-              <option>Heading 4</option>
-              <option>Heading 5</option>
-              <option>Heading 6</option>
-              <option>Paragraph</option>
-            </select>
+          <div className="border-base-300 flex gap-2 border-b p-4">
+            <label
+              className={`btn btn-secondary btn-sm cursor-pointer ${
+                ocrLoading ? 'btn-disabled' : ''
+              }`}>
+              <span>{ocrLoading ? 'Processing OCR...' : 'Upload Image'}</span>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleOCRFile}
+                className="hidden"
+                disabled={ocrLoading}
+              />
+            </label>
           </div>
 
           <div
             ref={editorRef}
-            className="h-full w-full overflow-auto text-sm"
+            className={`h-full w-full overflow-auto text-sm ${
+              ocrLoading ? 'pointer-events-none opacity-50' : ''
+            }`}
           />
         </div>
 
@@ -222,7 +286,7 @@ const AppPage: NextPage = () => {
             <button
               type="button"
               className="btn btn-primary btn-sm"
-              disabled={loading}
+              disabled={loading || ocrLoading}
               onClick={handleDownload}>
               Download
             </button>
