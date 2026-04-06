@@ -1,10 +1,9 @@
-import { HeadTemplate } from '../templates/HeadTemplate';
-import { APP_NAME } from '@keep/constants/app';
 import '@keep/styles/globals.css';
 import 'github-markdown-css/github-markdown.css';
 import type { AppProps } from 'next/app';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { FC } from 'react';
+import { HeadTemplate } from '../templates/HeadTemplate';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -19,7 +18,7 @@ const geistMono = Geist_Mono({
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
-      <HeadTemplate basic={{ title: '{`${APP_NAME}`}' }} />
+      <HeadTemplate basic={{ title: 'Keep' }} />
       <div className={`${geistSans.className} ${geistMono.className}`}>
         <Component {...pageProps} />
       </div>
