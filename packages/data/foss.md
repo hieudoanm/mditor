@@ -7,6 +7,7 @@
     - [Gecko](#gecko)
     - [WebKit](#webkit)
   - [CI/CD (Continue Integration / Continue Delivery)](#cicd-continue-integration--continue-delivery)
+  - [DNS (Domain Name System)](#dns-domain-name-system)
   - [Workspace](#workspace)
   - [Version Control](#version-control)
 
@@ -51,6 +52,14 @@
 - [Harness](https://harness.io/)
 - [Jenkins](https://www.jenkins.io/)
 - [TravisCI](https://docs.travis-ci.com/)
+
+## DNS (Domain Name System)
+
+- [1.1.1.1](https://one.one.one.one/)
+- [8.8.8.8](https://developers.google.com/speed/public-dns/docs/using)
+- [9.9.9.9](https://www.quad9.net/)
+- [185.228.168.9](https://cleanbrowsing.org/)
+- [208.67.222.222](https://www.opendns.com/)
 
 ## Workspace
 
