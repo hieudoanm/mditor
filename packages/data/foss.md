@@ -6,6 +6,7 @@
     - [Chromium](#chromium)
     - [Gecko](#gecko)
     - [WebKit](#webkit)
+  - [CI/CD (Continue Integration / Continue Delivery)](#cicd-continue-integration--continue-delivery)
   - [Workspace](#workspace)
   - [Version Control](#version-control)
 
@@ -41,6 +42,15 @@
 ### [WebKit](https://webkit.org/)
 
 - [Safari](https://www.apple.com/sg/safari/)
+
+## CI/CD (Continue Integration / Continue Delivery)
+
+- [CircleCI](https://circleci.com/)
+- [GitHub Actions](https://github.com/features/actions)
+- [GitLab CI](https://docs.gitlab.com/ee/ci/)
+- [Harness](https://harness.io/)
+- [Jenkins](https://www.jenkins.io/)
+- [TravisCI](https://docs.travis-ci.com/)
 
 ## Workspace
 
