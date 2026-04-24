@@ -7,9 +7,12 @@
     - [Gecko](#gecko)
     - [WebKit](#webkit)
   - [CI/CD (Continue Integration / Continue Delivery)](#cicd-continue-integration--continue-delivery)
+  - [Design](#design)
   - [DNS (Domain Name System)](#dns-domain-name-system)
-  - [Workspace](#workspace)
+  - [Social Media](#social-media)
+  - [Messaging](#messaging)
   - [Version Control](#version-control)
+  - [Workspace](#workspace)
 
 ## AI
 
@@ -53,6 +56,11 @@
 - [Jenkins](https://www.jenkins.io/)
 - [TravisCI](https://docs.travis-ci.com/)
 
+## Design
+
+- [Canva](https://www.canva.com)
+- [Figma](https://figma.com)
+
 ## DNS (Domain Name System)
 
 - [1.1.1.1](https://one.one.one.one/)
@@ -60,6 +68,41 @@
 - [9.9.9.9](https://www.quad9.net/)
 - [185.228.168.9](https://cleanbrowsing.org/)
 - [208.67.222.222](https://www.opendns.com/)
+
+## Social Media
+
+- Short messages
+  - [X](https://x.com/)
+  - [Threads](https://threads.com)
+  - [Twitter](https://twitter.com)
+- Posts
+  - [Facebook](https://facebook.com)
+  - [LinkedIn](https://linkedin.com)
+  - [Reddit](https://reddit.com)
+- Images
+  - [Instagram](https://instagram.com)
+- Videos
+  - [Tiktok](https://tiktok.com)
+  - [YouTube](https://youtube.com)
+
+## Messaging
+
+- [Discord](https://discord.com/)
+- [Facebook Messenger](https://www.messenger.com/)
+- [Signal](https://signal.org/)
+- [Slack](https://slack.com/)
+- [Telegram](https://telegram.org/)
+- [Whatsapp](https://www.whatsapp.com/)
+- [WeChat](https://www.wechat.com/)
+
+## Version Control
+
+1. [BitKeeper](https://www.bitkeeper.org/)
+2. [Git](https://git-scm.com/)
+   1. [Bitbucket](https://bitbucket.org/)
+   2. [GitHub](https://github.com/)
+   3. [GitLab](https://gitlab.com/)
+3. [Mercurial](https://www.mercurial-scm.org/)
 
 ## Workspace
 
@@ -74,12 +117,3 @@
 | Video Call | [Meet](https://meet.google.com/)         |            |
 |            | [Sheets](https://sheets.google.com/)     | Excel      |
 |            | [Slides](https://slides.google.com/)     | PowerPoint |
-
-## Version Control
-
-1. [BitKeeper](https://www.bitkeeper.org/)
-2. [Git](https://git-scm.com/)
-   1. [Bitbucket](https://bitbucket.org/)
-   2. [GitHub](https://github.com/)
-   3. [GitLab](https://gitlab.com/)
-3. [Mercurial](https://www.mercurial-scm.org/)
