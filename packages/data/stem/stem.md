@@ -4,8 +4,10 @@
 
 ## Technology
 
-[technology.md]
+[Technology](./technology/technology.md)
 
 ## Engineering
+
+[Engineering](./engineering/engineering.md)
 
 ## Mathematics
