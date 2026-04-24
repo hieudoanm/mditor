@@ -4,12 +4,27 @@
 
 - [Technology](#technology)
   - [Table of Contents](#table-of-contents)
+  - [AI](#ai)
   - [Browsers](#browsers)
     - [Chromium](#chromium)
     - [Gecko](#gecko)
     - [WebKit](#webkit)
   - [Messaging](#messaging)
   - [Workspace](#workspace)
+
+## AI
+
+| No  | Model                                     | Company                                     |
+| --- | ----------------------------------------- | ------------------------------------------- |
+| 1   | [ChatGPT](https://chatgpt.com/)           | [OpenAI](https://openai.com/)               |
+| 2   | [Claude](https://claude.com/)             | [Anthropic](https://www.anthropic.com/)     |
+| 3   | [Copilot](https://copilot.microsoft.com/) | [Microsoft](https://www.microsoft.com/)     |
+| 4   | [DeepSeek](https://deepseek.com/)         | [DeepSeek](https://deepseek.com/)           |
+| 5   | [Gemini](https://gemini.google.com/)      | [Google](https://www.google.com/)           |
+| 6   | [Grok](https://grok.com/)                 | [xAI](https://x.ai/)                        |
+| 7   | [Llama](https://llama.meta.com/)          | [Meta](https://www.meta.com/)               |
+| 8   | [Perplexity](https://www.perplexity.ai/)  | [Perplexity AI](https://www.perplexity.ai/) |
+| 9   | [Poe](https://poe.com/)                   | [Quora](https://www.quora.com/)             |
 
 ## Browsers
 

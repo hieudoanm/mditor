@@ -5,7 +5,8 @@
 - [Psychology](#psychology)
   - [Table of Contents](#table-of-contents)
   - [Diagrams](#diagrams)
-    - [Biology](#biology)
+    - [Biological](#biological)
+      - [NeuroSciences](#neurosciences)
     - [Cognitive](#cognitive)
     - [Social](#social)
     - [Developmental](#developmental)
@@ -16,7 +17,9 @@
 
 ## Diagrams
 
-### Biology
+### Biological
+
+#### NeuroSciences
 
 ### Cognitive
 
